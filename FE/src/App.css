@@ -1,0 +1,17 @@
+:root {
+  color: #1a1a1a;
+  background: #ffffff;
+}
+
+.clone-shell {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.clone-frame {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  border: 0;
+  background: #fff;
+}
