@@ -1,30 +1,28 @@
-# TransViet Homepage Clone
+# Renewed Mobile Store
 
-Project này dùng `React + TypeScript + Vite` để host một bản clone của homepage `transviet.com.vn`.
+Apple-inspired ecommerce app for selling used premium phones, rebuilt on `Next.js + TypeScript` with a simple MVC split.
 
 ## Scripts
 
-- `npm run dev`: chạy môi trường local
-- `npm run build`: build production
-- `npm run preview`: preview bản build
-- `npm run lint`: kiểm tra lint
+- `npm run dev`: start local development
+- `npm run build`: production build
+- `npm run start`: run production server
+- `npm run lint`: run ESLint
 
-## Cấu trúc chính
+## Architecture
 
-- `src/App.tsx`: entry component
-- `src/pages/HomePage.tsx`: page-level entry cho homepage clone
-- `src/components/EmbeddedPageFrame.tsx`: wrapper render clone page
-- `src/config.ts`: config dùng chung
-- `public/transviet-clone.html`: snapshot homepage clone
-- `public/transviet-local-fixes.css`: các bản vá local tách riêng khỏi snapshot
-- `public/Content/font-awesome.css`: local CSS cho icon font
-- `public/fonts/`: local font assets
+- `src/app`: views and routes with Next App Router
+- `src/models`: typed domain models and mock catalog/account data
+- `src/controllers`: catalog, cart, checkout, trade-in, and account business logic
+- `src/components`: reusable UI, store provider, and interactive client components
+- `src/app/api`: mock API endpoints for products, trade-in, and checkout
 
-## Ghi chú
+## Main user flows
 
-Snapshot trong `public/transviet-clone.html` đã được chỉnh để:
-
-- trỏ asset về đúng nguồn
-- giữ output bám sát bản gốc nhất có thể
-
-Phần fix local được giữ riêng trong `public/transviet-local-fixes.css` để snapshot HTML ít bị sửa tay hơn.
+- Homepage with Apple-style merchandising and trust sections
+- Product catalog with filter, sort, search, and featured collections
+- Product detail pages with specs, quality notes, and add-to-cart
+- Compare experience for multiple devices
+- Trade-in estimator
+- Cart and mock checkout flow
+- Account dashboard with mock orders and service benefits
