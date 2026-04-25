@@ -1,4 +1,4 @@
-import { phoneCatalog } from '@/models/catalog'
+import { listProducts } from '@/server/productsRepository'
 import type { CatalogFilters, PhoneProduct, ProductBrand, ProductGrade, ProductSort } from '@/models/product'
 
 const allowedBrands = new Set<ProductBrand>(['Apple', 'Samsung', 'Google'])
@@ -13,32 +13,33 @@ function readFirst(value: string | string[] | undefined) {
   return value ?? ''
 }
 
-export function getAllProducts() {
-  return phoneCatalog
+export async function getAllProducts() {
+  return listProducts()
 }
 
-export function getFeaturedProducts(limit = 4) {
-  return phoneCatalog.filter((product) => product.featured).slice(0, limit)
+export async function getFeaturedProducts(limit = 4) {
+  return (await listProducts()).filter((product) => product.featured).slice(0, limit)
 }
 
-export function getProductBySlug(slug: string) {
-  return phoneCatalog.find((product) => product.slug === slug)
+export async function getProductBySlug(slug: string) {
+  return (await listProducts()).find((product) => product.slug === slug)
 }
 
-export function getProductsBySlugs(slugs: string[]) {
-  return slugs
-    .map((slug) => getProductBySlug(slug))
-    .filter((product): product is PhoneProduct => Boolean(product))
+export async function getProductsBySlugs(slugs: string[]) {
+  const productMap = new Map((await listProducts()).map((product) => [product.slug, product]))
+
+  return slugs.map((slug) => productMap.get(slug)).filter((product): product is PhoneProduct => Boolean(product))
 }
 
-export function getRelatedProducts(slug: string, limit = 3) {
-  const product = getProductBySlug(slug)
+export async function getRelatedProducts(slug: string, limit = 3) {
+  const catalog = await listProducts()
+  const product = catalog.find((item) => item.slug === slug)
 
   if (!product) {
-    return getFeaturedProducts(limit)
+    return catalog.filter((item) => item.featured).slice(0, limit)
   }
 
-  return phoneCatalog
+  return catalog
     .filter((item) => item.slug !== slug && (item.brand === product.brand || item.category === product.category))
     .slice(0, limit)
 }
@@ -66,10 +67,10 @@ export function parseCatalogFilters(
   }
 }
 
-export function filterProducts(filters: CatalogFilters) {
+export function filterProductList(products: PhoneProduct[], filters: CatalogFilters) {
   const query = filters.search.toLowerCase()
 
-  const filtered = phoneCatalog.filter((product) => {
+  const filtered = products.filter((product) => {
     const matchesSearch =
       query.length === 0 ||
       [
@@ -110,4 +111,8 @@ export function filterProducts(filters: CatalogFilters) {
         return right.launchYear - left.launchYear
     }
   })
+}
+
+export async function filterProducts(filters: CatalogFilters) {
+  return filterProductList(await listProducts(), filters)
 }

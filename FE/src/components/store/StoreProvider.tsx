@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useContext, useMemo, useSyncExternalStore } from 'react'
 import type { ReactNode } from 'react'
 
 import type { CartLine } from '@/models/product'
@@ -20,6 +20,14 @@ interface StoreContextValue {
 
 const cartStorageKey = 'renewed-cart'
 const compareStorageKey = 'renewed-compare'
+const storeChangeEvent = 'renewed-store-change'
+const emptyCartSnapshot: CartLine[] = []
+const emptyCompareSnapshot: string[] = []
+
+let cartSnapshotKey: string | null | undefined
+let compareSnapshotKey: string | null | undefined
+let cartSnapshotCache: CartLine[] = emptyCartSnapshot
+let compareSnapshotCache: string[] = emptyCompareSnapshot
 
 const StoreContext = createContext<StoreContextValue | null>(null)
 
@@ -49,68 +57,130 @@ function parseStoredCompare(rawValue: string | null) {
   }
 }
 
+function subscribeStore(callback: () => void) {
+  if (typeof window === 'undefined') {
+    return () => undefined
+  }
+
+  const listener = () => callback()
+
+  window.addEventListener('storage', listener)
+  window.addEventListener(storeChangeEvent, listener)
+
+  return () => {
+    window.removeEventListener('storage', listener)
+    window.removeEventListener(storeChangeEvent, listener)
+  }
+}
+
+function readCartSnapshot() {
+  if (typeof window === 'undefined') {
+    return emptyCartSnapshot
+  }
+
+  const rawValue = window.localStorage.getItem(cartStorageKey)
+
+  if (rawValue === cartSnapshotKey) {
+    return cartSnapshotCache
+  }
+
+  cartSnapshotKey = rawValue
+  cartSnapshotCache = parseStoredCart(rawValue)
+
+  return cartSnapshotCache
+}
+
+function readCompareSnapshot() {
+  if (typeof window === 'undefined') {
+    return emptyCompareSnapshot
+  }
+
+  const rawValue = window.localStorage.getItem(compareStorageKey)
+
+  if (rawValue === compareSnapshotKey) {
+    return compareSnapshotCache
+  }
+
+  compareSnapshotKey = rawValue
+  compareSnapshotCache = parseStoredCompare(rawValue)
+
+  return compareSnapshotCache
+}
+
+function emitStoreChange() {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event(storeChangeEvent))
+  }
+}
+
+function writeCartLines(lines: CartLine[]) {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  window.localStorage.setItem(cartStorageKey, JSON.stringify(lines))
+  emitStoreChange()
+}
+
+function writeCompareSlugs(slugs: string[]) {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  window.localStorage.setItem(compareStorageKey, JSON.stringify(slugs))
+  emitStoreChange()
+}
+
 export function StoreProvider({ children }: { children: ReactNode }) {
-  const [cartLines, setCartLines] = useState<CartLine[]>([])
-  const [compareSlugs, setCompareSlugs] = useState<string[]>([])
-
-  useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
-      setCartLines(parseStoredCart(window.localStorage.getItem(cartStorageKey)))
-      setCompareSlugs(parseStoredCompare(window.localStorage.getItem(compareStorageKey)))
-    })
-
-    return () => window.cancelAnimationFrame(frame)
-  }, [])
-
-  useEffect(() => {
-    window.localStorage.setItem(cartStorageKey, JSON.stringify(cartLines))
-  }, [cartLines])
-
-  useEffect(() => {
-    window.localStorage.setItem(compareStorageKey, JSON.stringify(compareSlugs))
-  }, [compareSlugs])
+  const cartLines = useSyncExternalStore(subscribeStore, readCartSnapshot, () => emptyCartSnapshot)
+  const compareSlugs = useSyncExternalStore(subscribeStore, readCompareSnapshot, () => emptyCompareSnapshot)
 
   const value = useMemo<StoreContextValue>(
     () => ({
       cartLines,
       compareSlugs,
       addToCart: (slug: string) => {
-        setCartLines((current) => {
-          const existing = current.find((line) => line.slug === slug)
+        const current = readCartSnapshot()
+        const existing = current.find((line) => line.slug === slug)
 
-          if (!existing) {
-            return [...current, { slug, quantity: 1 }]
-          }
-
-          return current.map((line) =>
-            line.slug === slug ? { ...line, quantity: Math.min(9, line.quantity + 1) } : line,
-          )
-        })
-      },
-      setQuantity: (slug: string, quantity: number) => {
-        if (quantity <= 0) {
-          setCartLines((current) => current.filter((line) => line.slug !== slug))
+        if (!existing) {
+          writeCartLines([...current, { slug, quantity: 1 }])
           return
         }
 
-        setCartLines((current) =>
+        writeCartLines(
+          current.map((line) =>
+            line.slug === slug ? { ...line, quantity: Math.min(9, line.quantity + 1) } : line,
+          ),
+        )
+      },
+      setQuantity: (slug: string, quantity: number) => {
+        const current = readCartSnapshot()
+
+        if (quantity <= 0) {
+          writeCartLines(current.filter((line) => line.slug !== slug))
+          return
+        }
+
+        writeCartLines(
           current.map((line) => (line.slug === slug ? { ...line, quantity: Math.min(9, quantity) } : line)),
         )
       },
       removeFromCart: (slug: string) => {
-        setCartLines((current) => current.filter((line) => line.slug !== slug))
+        writeCartLines(readCartSnapshot().filter((line) => line.slug !== slug))
       },
       clearCart: () => {
-        setCartLines([])
+        writeCartLines([])
       },
       toggleCompare: (slug: string) => {
-        setCompareSlugs((current) => {
-          if (current.includes(slug)) {
-            return current.filter((item) => item !== slug)
-          }
+        const current = readCompareSnapshot()
 
-          return [...current.slice(-3), slug]
-        })
+        if (current.includes(slug)) {
+          writeCompareSlugs(current.filter((item) => item !== slug))
+          return
+        }
+
+        writeCompareSlugs([...current.slice(-3), slug])
       },
       isCompared: (slug: string) => compareSlugs.includes(slug),
       cartCount: cartLines.reduce((total, line) => total + line.quantity, 0),

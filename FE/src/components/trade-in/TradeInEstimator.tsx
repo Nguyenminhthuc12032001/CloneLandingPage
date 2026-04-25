@@ -34,12 +34,12 @@ export function TradeInEstimator() {
       const data = (await response.json()) as TradeInEstimate | { error: string }
 
       if (!response.ok || 'error' in data) {
-        throw new Error('error' in data ? data.error : 'Unable to estimate trade-in.')
+        throw new Error('error' in data ? data.error : 'Không thể định giá thu cũ.')
       }
 
       setResult(data)
     } catch (submitError) {
-      setError(submitError instanceof Error ? submitError.message : 'Unable to estimate trade-in.')
+      setError(submitError instanceof Error ? submitError.message : 'Không thể định giá thu cũ.')
     } finally {
       setSubmitting(false)
     }
@@ -49,14 +49,14 @@ export function TradeInEstimator() {
     <div className="shell trade-in-layout">
       <form className="panel form-panel" onSubmit={handleSubmit}>
         <div className="section-heading">
-          <span className="section-heading__eyebrow">Trade-in</span>
-          <h2>Estimate credit before checkout.</h2>
-          <p>Use condition, storage, and battery health to preview how much your current phone can offset.</p>
+          <span className="section-heading__eyebrow">Thu cũ đổi mới</span>
+          <h2>Định giá máy cũ trước khi lên đời.</h2>
+          <p>Nhập đời máy, dung lượng, ngoại hình và pin để xem nhanh mức thu cũ dự kiến trước khi chốt máy mới.</p>
         </div>
 
         <div className="form-grid">
           <label>
-            Brand
+            Hãng
             <select value={form.brand} onChange={(event) => setForm((current) => ({ ...current, brand: event.target.value }))}>
               <option>Apple</option>
               <option>Samsung</option>
@@ -65,16 +65,16 @@ export function TradeInEstimator() {
           </label>
 
           <label>
-            Model
+            Mẫu máy
             <input
               value={form.model}
               onChange={(event) => setForm((current) => ({ ...current, model: event.target.value }))}
-              placeholder="Example: iPhone 14 Pro"
+              placeholder="Ví dụ: iPhone 14 Pro"
             />
           </label>
 
           <label>
-            Storage
+            Dung lượng
             <select
               value={form.storage}
               onChange={(event) => setForm((current) => ({ ...current, storage: event.target.value }))}
@@ -86,7 +86,7 @@ export function TradeInEstimator() {
           </label>
 
           <label>
-            Condition
+            Ngoại hình
             <select
               value={form.condition}
               onChange={(event) =>
@@ -96,15 +96,15 @@ export function TradeInEstimator() {
                 }))
               }
             >
-              <option value="like-new">Like new</option>
-              <option value="great">Great</option>
-              <option value="good">Good</option>
-              <option value="fair">Fair</option>
+              <option value="like-new">Như mới</option>
+              <option value="great">Rất đẹp</option>
+              <option value="good">Tốt</option>
+              <option value="fair">Khá</option>
             </select>
           </label>
 
           <label>
-            Battery health
+            Pin hiện tại
             <input
               type="number"
               min="70"
@@ -123,42 +123,40 @@ export function TradeInEstimator() {
         {error ? <p className="form-error">{error}</p> : null}
 
         <button className="button button--primary button--wide" type="submit" disabled={submitting}>
-          {submitting ? 'Estimating...' : 'Estimate trade-in'}
+          {submitting ? 'Đang định giá...' : 'Định giá ngay'}
         </button>
       </form>
 
       <aside className="panel trade-in-result">
         {result ? (
           <>
-            <span className="section-heading__eyebrow">Estimated credit</span>
+            <span className="section-heading__eyebrow">Giá thu dự kiến</span>
             <h2>{formatCurrency(result.estimatedValue)}</h2>
             <p>{result.summary}</p>
             <div className="trade-in-breakdown">
               <div>
-                <span>Matched model</span>
+                <span>Mẫu đối chiếu</span>
                 <strong>{result.matchedModel}</strong>
               </div>
               <div>
-                <span>Condition-adjusted</span>
+                <span>Giá theo ngoại hình</span>
                 <strong>{formatCurrency(result.conditionValue)}</strong>
               </div>
               <div>
-                <span>Battery and storage bonus</span>
+                <span>Cộng thêm pin và dung lượng</span>
                 <strong>{formatCurrency(result.batteryBonus)}</strong>
               </div>
               <div>
-                <span>Seasonal bonus</span>
+                <span>Ưu đãi hỗ trợ lên đời</span>
                 <strong>{formatCurrency(result.seasonalBonus)}</strong>
               </div>
             </div>
           </>
         ) : (
           <>
-            <span className="section-heading__eyebrow">Upgrade path</span>
-            <h2>Trade-in is designed into the buying flow.</h2>
-            <p>
-              Customers can discover, compare, estimate credit, and complete checkout without leaving the storefront.
-            </p>
+            <span className="section-heading__eyebrow">Lên đời dễ hơn</span>
+            <h2>Biết trước khoản bù để cân ngân sách nhanh hơn.</h2>
+            <p>Chỉ cần nhập máy đang dùng để xem giá thu cũ dự kiến, rồi so luôn số tiền cần thêm khi lên đời.</p>
           </>
         )}
       </aside>

@@ -3,29 +3,30 @@
 import { FormEvent, useState } from 'react'
 import Link from 'next/link'
 
-import { calculateCartTotals, enrichCartLines } from '@/controllers/cartController'
+import { calculateCartTotalsWithProducts, enrichCartLinesWithProducts } from '@/lib/cart'
 import { useStore } from '@/components/store/StoreProvider'
 import { formatCurrency } from '@/lib/format'
 import type { CheckoutResult } from '@/models/order'
+import type { PhoneProduct } from '@/models/product'
 
 const initialCustomer = {
   fullName: '',
   email: '',
   phone: '',
-  city: 'Ho Chi Minh City',
+  city: 'TP. Hồ Chí Minh',
   address: '',
   note: '',
 }
 
-export function CheckoutClient() {
+export function CheckoutClient({ products }: { products: PhoneProduct[] }) {
   const { cartLines, clearCart } = useStore()
   const [customer, setCustomer] = useState(initialCustomer)
   const [result, setResult] = useState<CheckoutResult | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
 
-  const lines = enrichCartLines(cartLines)
-  const totals = calculateCartTotals(cartLines)
+  const lines = enrichCartLinesWithProducts(cartLines, products)
+  const totals = calculateCartTotalsWithProducts(cartLines, products)
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -42,13 +43,13 @@ export function CheckoutClient() {
       const data = (await response.json()) as CheckoutResult | { error: string }
 
       if (!response.ok || 'error' in data) {
-        throw new Error('error' in data ? data.error : 'Checkout failed.')
+        throw new Error('error' in data ? data.error : 'Thanh toán thất bại.')
       }
 
       setResult(data)
       clearCart()
     } catch (submitError) {
-      setError(submitError instanceof Error ? submitError.message : 'Checkout failed.')
+      setError(submitError instanceof Error ? submitError.message : 'Thanh toán thất bại.')
     } finally {
       setSubmitting(false)
     }
@@ -57,11 +58,11 @@ export function CheckoutClient() {
   if (result) {
     return (
       <section className="shell empty-state">
-        <h1>Order confirmed: {result.orderNumber}</h1>
+        <h1>Đơn hàng đã được xác nhận: {result.orderNumber}</h1>
         <p>{result.eta}</p>
-        <p>Total paid: {formatCurrency(result.totals.total)}</p>
+        <p>Tổng thanh toán: {formatCurrency(result.totals.total)}</p>
         <Link href="/account" className="button button--primary">
-          View account dashboard
+          Xem trang tài khoản
         </Link>
       </section>
     )
@@ -70,10 +71,10 @@ export function CheckoutClient() {
   if (lines.length === 0) {
     return (
       <section className="shell empty-state">
-        <h1>No items ready for checkout.</h1>
-        <p>Add a device to cart first, then come back here to complete the order flow.</p>
+        <h1>Chưa có sản phẩm nào sẵn sàng để thanh toán.</h1>
+        <p>Hãy thêm thiết bị vào giỏ trước, rồi quay lại đây để hoàn tất đơn hàng.</p>
         <Link href="/products" className="button button--primary">
-          Shop catalog
+          Xem điện thoại
         </Link>
       </section>
     )
@@ -83,34 +84,61 @@ export function CheckoutClient() {
     <section className="shell checkout-layout">
       <form className="panel form-panel" onSubmit={handleSubmit}>
         <div className="section-heading">
-          <span className="section-heading__eyebrow">Checkout</span>
-          <h2>Complete the premium used-phone purchase flow.</h2>
-          <p>Customer details, delivery address, and any setup notes are collected in one calm, guided form.</p>
+          <span className="section-heading__eyebrow">Thanh toán</span>
+          <h2>Hoàn tất đơn hàng nhanh và rõ ràng.</h2>
+          <p>Điền thông tin nhận hàng một lần để chốt máy, giao hàng và hỗ trợ cài đặt sau khi nhận.</p>
         </div>
 
         <div className="form-grid">
           <label>
-            Full name
-            <input value={customer.fullName} onChange={(event) => setCustomer((current) => ({ ...current, fullName: event.target.value }))} />
+            Họ và tên
+            <input
+              required
+              autoComplete="name"
+              value={customer.fullName}
+              onChange={(event) => setCustomer((current) => ({ ...current, fullName: event.target.value }))}
+            />
           </label>
           <label>
             Email
-            <input value={customer.email} onChange={(event) => setCustomer((current) => ({ ...current, email: event.target.value }))} />
+            <input
+              required
+              type="email"
+              autoComplete="email"
+              value={customer.email}
+              onChange={(event) => setCustomer((current) => ({ ...current, email: event.target.value }))}
+            />
           </label>
           <label>
-            Phone
-            <input value={customer.phone} onChange={(event) => setCustomer((current) => ({ ...current, phone: event.target.value }))} />
+            Số điện thoại
+            <input
+              required
+              type="tel"
+              autoComplete="tel"
+              value={customer.phone}
+              onChange={(event) => setCustomer((current) => ({ ...current, phone: event.target.value }))}
+            />
           </label>
           <label>
-            City
-            <input value={customer.city} onChange={(event) => setCustomer((current) => ({ ...current, city: event.target.value }))} />
+            Thành phố
+            <input
+              required
+              autoComplete="address-level2"
+              value={customer.city}
+              onChange={(event) => setCustomer((current) => ({ ...current, city: event.target.value }))}
+            />
           </label>
           <label className="form-grid__full">
-            Address
-            <input value={customer.address} onChange={(event) => setCustomer((current) => ({ ...current, address: event.target.value }))} />
+            Địa chỉ
+            <input
+              required
+              autoComplete="street-address"
+              value={customer.address}
+              onChange={(event) => setCustomer((current) => ({ ...current, address: event.target.value }))}
+            />
           </label>
           <label className="form-grid__full">
-            Notes
+            Ghi chú
             <textarea value={customer.note} onChange={(event) => setCustomer((current) => ({ ...current, note: event.target.value }))} rows={4} />
           </label>
         </div>
@@ -118,12 +146,23 @@ export function CheckoutClient() {
         {error ? <p className="form-error">{error}</p> : null}
 
         <button className="button button--primary button--wide" type="submit" disabled={submitting}>
-          {submitting ? 'Processing order...' : 'Place order'}
+          {submitting ? 'Đang xử lý đơn hàng...' : 'Xác nhận đặt hàng'}
         </button>
+
+        <div className="checkout-care">
+          <div>
+            <span>Kiểm định</span>
+            <strong>Pin, khung, camera và màn hình đều được kiểm tra trước khi đóng gói.</strong>
+          </div>
+          <div>
+            <span>Giao hàng</span>
+            <strong>2-4 ngày làm việc kèm hướng dẫn cài đặt và hỗ trợ sau mua.</strong>
+          </div>
+        </div>
       </form>
 
       <aside className="panel cart-summary">
-        <span className="section-heading__eyebrow">Review</span>
+        <span className="section-heading__eyebrow">Rà soát đơn</span>
         <h2>{formatCurrency(totals.total)}</h2>
         <div className="summary-stack">
           {lines.map((line) => (
@@ -137,12 +176,27 @@ export function CheckoutClient() {
         </div>
         <div className="summary-stack summary-stack--bordered">
           <div>
-            <span>Shipping</span>
+            <span>Vận chuyển</span>
             <strong>{formatCurrency(totals.shipping)}</strong>
           </div>
           <div>
-            <span>Setup care</span>
+            <span>Hỗ trợ cài đặt</span>
             <strong>{formatCurrency(totals.setupFee)}</strong>
+          </div>
+        </div>
+
+        <div className="checkout-trust">
+          <div>
+            <span>Bảo hành</span>
+            <strong>Đã bao gồm hỗ trợ phần cứng trong 12 tháng</strong>
+          </div>
+          <div>
+            <span>Đóng gói</span>
+            <strong>Trong hộp có phiếu QC, cáp và hướng dẫn cài đặt</strong>
+          </div>
+          <div>
+            <span>Thu cũ đổi mới</span>
+            <strong>Giá trị thu cũ có thể dùng cho lần nâng cấp kế tiếp</strong>
           </div>
         </div>
       </aside>

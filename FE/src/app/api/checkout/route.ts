@@ -1,18 +1,23 @@
-import { NextResponse } from 'next/server'
-
 import { createCheckout } from '@/controllers/checkoutController'
-import type { CheckoutPayload } from '@/models/order'
+import { errorJsonResponse, jsonResponse, parseJsonBody } from '@/server/http'
+import { saveOrder } from '@/server/ordersRepository'
+import { assertRateLimit } from '@/server/rateLimit'
+
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 
 export async function POST(request: Request) {
-  const payload = (await request.json()) as CheckoutPayload
-
   try {
-    const result = createCheckout(payload)
-    return NextResponse.json(result)
+    assertRateLimit(request, 'checkout', { limit: 10, windowMs: 60_000 })
+
+    const payload = await parseJsonBody<unknown>(request)
+    const result = await saveOrder({
+      ...(await createCheckout(payload)),
+      updatedAt: new Date().toISOString(),
+    })
+
+    return jsonResponse(result, { status: 201 })
   } catch (error) {
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Checkout failed.' },
-      { status: 400 },
-    )
+    return errorJsonResponse(error, request, 'api.checkout')
   }
 }

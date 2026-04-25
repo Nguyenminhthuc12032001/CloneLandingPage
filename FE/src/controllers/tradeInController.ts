@@ -8,8 +8,8 @@ const conditionMultipliers = {
   fair: 0.58,
 } as const
 
-export function estimateTradeIn(request: TradeInRequest): TradeInEstimate {
-  const catalog = getAllProducts()
+export async function estimateTradeIn(request: TradeInRequest): Promise<TradeInEstimate> {
+  const catalog = await getAllProducts()
   const normalizedModel = request.model.toLowerCase().trim()
   const matched =
     catalog.find((product) => product.name.toLowerCase() === normalizedModel) ??
@@ -31,7 +31,7 @@ export function estimateTradeIn(request: TradeInRequest): TradeInEstimate {
     estimatedValue,
     summary:
       estimatedValue >= 12000000
-        ? 'High-value trade in with premium upgrade potential.'
-        : 'Solid credit estimate for reducing checkout total on your next device.',
+        ? 'Giá trị thu cũ cao, phù hợp để nâng cấp lên thiết bị tốt hơn.'
+        : 'Mức định giá ổn để giảm tổng thanh toán cho chiếc máy tiếp theo.',
   }
 }

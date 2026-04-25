@@ -1,0 +1,578 @@
+[
+  {
+    "id": "apple-iphone-15-pro-256",
+    "slug": "iphone-15-pro-256-natural",
+    "brand": "Apple",
+    "name": "iPhone 15 Pro",
+    "heroTitle": "Máy đẹp, chip mạnh, lên đời là thấy khác ngay.",
+    "shortDescription": "iPhone 15 Pro A+ pin 91%, ngoại hình đẹp, phù hợp cho khách muốn máy Pro giá tốt.",
+    "longDescription": "iPhone 15 Pro phù hợp cho người muốn hiệu năng mạnh, camera tốt và cảm giác máy sang nhưng không cần mua mới giá cao. Máy đã kiểm tra kỹ, pin 91%, ngoại hình đẹp và sẵn hỗ trợ chuyển dữ liệu khi nhận máy.",
+    "category": "Pro",
+    "storage": "256GB",
+    "color": "Titan tự nhiên",
+    "grade": "A+",
+    "batteryHealth": 91,
+    "launchYear": 2023,
+    "price": 23990000,
+    "originalPrice": 31990000,
+    "monthlyPrice": 1999000,
+    "rating": 4.9,
+    "reviewCount": 128,
+    "featured": true,
+    "badge": "Bán chạy",
+    "finish": "Khung titanium, kính nhám",
+    "display": "Super Retina XDR 6.1 inch",
+    "chipset": "A17 Pro",
+    "camera": "Camera chính 48MP + tele 3x",
+    "warranty": "Bảo hành phần cứng 12 tháng",
+    "stockLabel": "Sẵn hàng",
+    "maxTradeIn": 17500000,
+    "gradient": "linear-gradient(135deg, #f6f4ef 0%, #d9d1c5 42%, #7b7166 100%)",
+    "accessories": [
+      "Cáp USB-C",
+      "Phiếu QC",
+      "Chứng nhận pin",
+      "Hướng dẫn cài đặt"
+    ],
+    "summaryBullets": [
+      "Pin 91%",
+      "Ngoại hình A+",
+      "Hỗ trợ chuyển dữ liệu"
+    ],
+    "highlightBullets": [
+      "Máy đẹp, khung và cụm camera được kiểm tra kỹ trước khi lên kệ.",
+      "Hiệu năng Pro phù hợp chụp ảnh, quay video, chơi game và làm việc mỗi ngày.",
+      "Giá tốt hơn máy mới nhưng vẫn có bảo hành rõ ràng."
+    ],
+    "specs": [
+      {
+        "label": "Pin",
+        "value": "Sức khỏe 91%"
+      },
+      {
+        "label": "Bảo mật",
+        "value": "Face ID"
+      },
+      {
+        "label": "Cổng kết nối",
+        "value": "USB-C"
+      },
+      {
+        "label": "Khung máy",
+        "value": "Titanium"
+      },
+      {
+        "label": "Video",
+        "value": "Hỗ trợ 4K ProRes"
+      },
+      {
+        "label": "Kết nối",
+        "value": "5G + Wi‑Fi 6E"
+      }
+    ]
+  },
+  {
+    "id": "apple-iphone-15-128",
+    "slug": "iphone-15-128-blue",
+    "brand": "Apple",
+    "name": "iPhone 15",
+    "heroTitle": "iPhone dễ mua, pin cao, dùng ổn định mỗi ngày.",
+    "shortDescription": "iPhone 15 A+ pin 94%, màu đẹp, USB-C tiện dùng và mức giá dễ chốt.",
+    "longDescription": "Đây là mẫu hợp cho người muốn lên đời iPhone mới hơn nhưng vẫn giữ ngân sách gọn. Máy có pin 94%, ngoại hình đẹp, camera tốt và đủ ổn định để dùng lâu dài cho học tập, làm việc lẫn giải trí.",
+    "category": "Standard",
+    "storage": "128GB",
+    "color": "Xanh dương",
+    "grade": "A+",
+    "batteryHealth": 94,
+    "launchYear": 2023,
+    "price": 18990000,
+    "originalPrice": 24990000,
+    "monthlyPrice": 1583000,
+    "rating": 4.8,
+    "reviewCount": 96,
+    "featured": true,
+    "badge": "Pin cao",
+    "finish": "Mặt lưng kính phủ màu",
+    "display": "Super Retina XDR 6.1 inch",
+    "chipset": "A16 Bionic",
+    "camera": "Camera chính 48MP",
+    "warranty": "Bảo hành phần cứng 12 tháng",
+    "stockLabel": "Sẵn hàng",
+    "maxTradeIn": 14800000,
+    "gradient": "linear-gradient(135deg, #d7e8ff 0%, #8fbaf6 48%, #3a6fb7 100%)",
+    "accessories": [
+      "Cáp USB-C",
+      "Phiếu QC",
+      "Que chọc SIM",
+      "Hướng dẫn cài đặt"
+    ],
+    "summaryBullets": [
+      "Pin 94%",
+      "USB-C tiện sạc",
+      "Máy đẹp ít xước"
+    ],
+    "highlightBullets": [
+      "Rất hợp cho khách đang dùng iPhone 11, 12 hoặc XR muốn lên đời rõ rệt.",
+      "Pin cao giúp dùng thoải mái cả ngày và bớt lo khi mua máy cũ.",
+      "Máy sẵn hàng, có thể chốt nhanh và giao sớm."
+    ],
+    "specs": [
+      {
+        "label": "Pin",
+        "value": "Sức khỏe 94%"
+      },
+      {
+        "label": "Bảo mật",
+        "value": "Face ID"
+      },
+      {
+        "label": "Cổng kết nối",
+        "value": "USB-C"
+      },
+      {
+        "label": "Hoàn thiện",
+        "value": "Nhôm + kính"
+      },
+      {
+        "label": "Camera",
+        "value": "Crop quang học 2x"
+      },
+      {
+        "label": "Kết nối",
+        "value": "5G + Wi‑Fi 6"
+      }
+    ]
+  },
+  {
+    "id": "apple-iphone-14-pro-256",
+    "slug": "iphone-14-pro-256-space-black",
+    "brand": "Apple",
+    "name": "iPhone 14 Pro",
+    "heroTitle": "Dòng Pro giá mềm hơn, camera vẫn rất đáng tiền.",
+    "shortDescription": "iPhone 14 Pro A, pin 89%, camera đẹp và cảm giác cầm nắm vẫn rất cao cấp.",
+    "longDescription": "iPhone 14 Pro là lựa chọn hợp lý cho khách muốn trải nghiệm dòng Pro với chi phí dễ chịu hơn đời mới. Máy giữ được màn hình 120Hz, camera 48MP và ngoại hình sang, phù hợp cho người hay chụp ảnh hoặc thích cảm giác flagship.",
+    "category": "Pro",
+    "storage": "256GB",
+    "color": "Đen Space Black",
+    "grade": "A",
+    "batteryHealth": 89,
+    "launchYear": 2022,
+    "price": 18950000,
+    "originalPrice": 30990000,
+    "monthlyPrice": 1579000,
+    "rating": 4.8,
+    "reviewCount": 84,
+    "featured": true,
+    "badge": "Camera đẹp",
+    "finish": "Thép không gỉ và kính nhám",
+    "display": "OLED Always-On 6.1 inch",
+    "chipset": "A16 Bionic",
+    "camera": "Hệ camera Pro 48MP",
+    "warranty": "Bảo hành phần cứng 12 tháng",
+    "stockLabel": "Còn ít hàng",
+    "maxTradeIn": 13600000,
+    "gradient": "linear-gradient(135deg, #4a4d54 0%, #1f2228 48%, #090b0f 100%)",
+    "accessories": [
+      "Cáp Lightning",
+      "Phiếu QC",
+      "Phiếu căn chỉnh ống kính",
+      "Hướng dẫn cài đặt"
+    ],
+    "summaryBullets": [
+      "Pin 89%",
+      "Camera đã test kỹ",
+      "Còn ít hàng"
+    ],
+    "highlightBullets": [
+      "Camera và loa đã kiểm tra đầy đủ trước khi bán.",
+      "Rất hợp cho người cần chụp ảnh đẹp, quay video ổn và màn hình ProMotion mượt.",
+      "Mức giá tốt hơn đáng kể so với máy mới nên dễ cân ngân sách."
+    ],
+    "specs": [
+      {
+        "label": "Pin",
+        "value": "Sức khỏe 89%"
+      },
+      {
+        "label": "Màn hình",
+        "value": "ProMotion 120Hz"
+      },
+      {
+        "label": "Bảo mật",
+        "value": "Face ID"
+      },
+      {
+        "label": "Cổng kết nối",
+        "value": "Lightning"
+      },
+      {
+        "label": "Khung máy",
+        "value": "Thép không gỉ"
+      },
+      {
+        "label": "Video",
+        "value": "Cinematic mode 4K"
+      }
+    ]
+  },
+  {
+    "id": "apple-iphone-14-128",
+    "slug": "iphone-14-128-starlight",
+    "brand": "Apple",
+    "name": "iPhone 14",
+    "heroTitle": "Máy ổn định, giá vừa tầm, rất dễ mua lần đầu.",
+    "shortDescription": "iPhone 14 A pin 90%, ngoại hình đẹp, phù hợp cho người cần máy dùng bền và ít lỗi vặt.",
+    "longDescription": "iPhone 14 là lựa chọn an toàn cho khách muốn mua máy cũ nhưng vẫn ưu tiên sự ổn định. Máy có pin 90%, hiệu năng còn tốt, ngoại hình gọn gàng và mức giá dễ tiếp cận cho nhu cầu dùng lâu dài.",
+    "category": "Standard",
+    "storage": "128GB",
+    "color": "Starlight",
+    "grade": "A",
+    "batteryHealth": 90,
+    "launchYear": 2022,
+    "price": 15990000,
+    "originalPrice": 22990000,
+    "monthlyPrice": 1333000,
+    "rating": 4.7,
+    "reviewCount": 63,
+    "featured": true,
+    "badge": "Dễ chọn",
+    "finish": "Kính bóng với cạnh viền sạch",
+    "display": "Super Retina XDR 6.1 inch",
+    "chipset": "A15 Bionic",
+    "camera": "Camera kép 12MP",
+    "warranty": "Bảo hành phần cứng 12 tháng",
+    "stockLabel": "Sẵn hàng",
+    "maxTradeIn": 11700000,
+    "gradient": "linear-gradient(135deg, #faf8ef 0%, #e0d7c6 45%, #b8a88e 100%)",
+    "accessories": [
+      "Cáp Lightning",
+      "Phiếu QC",
+      "Que chọc SIM",
+      "Hướng dẫn cài đặt"
+    ],
+    "summaryBullets": [
+      "Pin 90%",
+      "Ngoại hình đẹp",
+      "Dùng ổn định"
+    ],
+    "highlightBullets": [
+      "Phù hợp với người cần iPhone dùng lâu, ít phải suy nghĩ khi chọn.",
+      "Chi phí hợp lý, dễ lên đời từ các mẫu iPhone cũ hơn.",
+      "Tương thích tốt với phụ kiện và hệ sinh thái Apple sẵn có."
+    ],
+    "specs": [
+      {
+        "label": "Pin",
+        "value": "Sức khỏe 90%"
+      },
+      {
+        "label": "Bảo mật",
+        "value": "Face ID"
+      },
+      {
+        "label": "Khung máy",
+        "value": "Nhôm"
+      },
+      {
+        "label": "Cổng kết nối",
+        "value": "Lightning"
+      },
+      {
+        "label": "An toàn",
+        "value": "Crash Detection"
+      },
+      {
+        "label": "Kết nối",
+        "value": "5G + eSIM"
+      }
+    ]
+  },
+  {
+    "id": "apple-iphone-13-pro-256",
+    "slug": "iphone-13-pro-256-sierra-blue",
+    "brand": "Apple",
+    "name": "iPhone 13 Pro",
+    "heroTitle": "ProMotion mượt, khung thép đẹp, giá xuống dễ mua hơn.",
+    "shortDescription": "iPhone 13 Pro A pin 88%, vẫn rất hợp cho khách thích dòng Pro nhưng muốn tiết kiệm hơn.",
+    "longDescription": "iPhone 13 Pro là mẫu dễ bán ở thị trường máy cũ nhờ màn hình 120Hz, camera ổn và cảm giác hoàn thiện cao cấp. Đây là lựa chọn hợp cho người muốn lên Pro lần đầu mà chưa cần chi quá cao.",
+    "category": "Pro",
+    "storage": "256GB",
+    "color": "Sierra Blue",
+    "grade": "A",
+    "batteryHealth": 88,
+    "launchYear": 2021,
+    "price": 14990000,
+    "originalPrice": 30990000,
+    "monthlyPrice": 1249000,
+    "rating": 4.7,
+    "reviewCount": 72,
+    "featured": false,
+    "badge": "Pro giá tốt",
+    "finish": "Thép không gỉ, lưng nhám",
+    "display": "OLED ProMotion 6.1 inch",
+    "chipset": "A15 Bionic",
+    "camera": "Hệ camera ba ống kính 12MP",
+    "warranty": "Bảo hành phần cứng 12 tháng",
+    "stockLabel": "Sẵn hàng",
+    "maxTradeIn": 10200000,
+    "gradient": "linear-gradient(135deg, #dbebf5 0%, #8faec9 46%, #4e6884 100%)",
+    "accessories": [
+      "Cáp Lightning",
+      "Phiếu QC",
+      "Chứng nhận pin",
+      "Hướng dẫn cài đặt"
+    ],
+    "summaryBullets": [
+      "Pin 88%",
+      "Màn 120Hz mượt",
+      "Khung thép cao cấp"
+    ],
+    "highlightBullets": [
+      "Phù hợp cho khách muốn thử dòng Pro với chi phí dễ chịu hơn.",
+      "Camera, màn hình và hiệu năng vẫn đủ mạnh cho vài năm tới.",
+      "Giữ giá khá tốt nên cũng thuận lợi khi muốn đổi máy sau này."
+    ],
+    "specs": [
+      {
+        "label": "Pin",
+        "value": "Sức khỏe 88%"
+      },
+      {
+        "label": "Màn hình",
+        "value": "ProMotion 120Hz"
+      },
+      {
+        "label": "Chip",
+        "value": "A15 Bionic"
+      },
+      {
+        "label": "Camera",
+        "value": "Macro + Night mode"
+      },
+      {
+        "label": "Khung máy",
+        "value": "Thép không gỉ"
+      },
+      {
+        "label": "Kết nối",
+        "value": "5G + MagSafe"
+      }
+    ]
+  },
+  {
+    "id": "apple-iphone-13-128",
+    "slug": "iphone-13-128-midnight",
+    "brand": "Apple",
+    "name": "iPhone 13",
+    "heroTitle": "Máy quốc dân, pin đẹp, giá rất dễ xuống tiền.",
+    "shortDescription": "iPhone 13 A pin 92%, ngoại hình đẹp, phù hợp cho sinh viên và người đi làm cần máy ngon giá tốt.",
+    "longDescription": "iPhone 13 là mẫu rất dễ chốt vì hội đủ những gì khách thường hỏi: pin đẹp, hiệu năng ổn, ngoại hình gọn và giá tốt. Nếu cần một chiếc iPhone dùng mượt hằng ngày mà ngân sách vừa phải, đây là lựa chọn rất sáng.",
+    "category": "Standard",
+    "storage": "128GB",
+    "color": "Midnight",
+    "grade": "A",
+    "batteryHealth": 92,
+    "launchYear": 2021,
+    "price": 12490000,
+    "originalPrice": 21990000,
+    "monthlyPrice": 1041000,
+    "rating": 4.7,
+    "reviewCount": 110,
+    "featured": false,
+    "badge": "Giá tốt",
+    "finish": "Khung nhôm màu tối",
+    "display": "Super Retina XDR 6.1 inch",
+    "chipset": "A15 Bionic",
+    "camera": "Camera kép 12MP góc rộng và siêu rộng",
+    "warranty": "Bảo hành phần cứng 12 tháng",
+    "stockLabel": "Sẵn hàng",
+    "maxTradeIn": 8900000,
+    "gradient": "linear-gradient(135deg, #3f4450 0%, #1c2129 46%, #090b10 100%)",
+    "accessories": [
+      "Cáp Lightning",
+      "Phiếu QC",
+      "Phiếu kiểm tra màn hình",
+      "Hướng dẫn cài đặt"
+    ],
+    "summaryBullets": [
+      "Pin 92%",
+      "Ngoại hình đẹp",
+      "Giữ giá tốt"
+    ],
+    "highlightBullets": [
+      "Hợp với sinh viên, dân văn phòng và người mua iPhone lần đầu.",
+      "Pin 92% là điểm cộng lớn khi so với nhiều máy cũ cùng tầm giá.",
+      "Form máy gọn, dễ dùng lâu dài và dễ bán lại."
+    ],
+    "specs": [
+      {
+        "label": "Pin",
+        "value": "Sức khỏe 92%"
+      },
+      {
+        "label": "Chip",
+        "value": "A15 Bionic"
+      },
+      {
+        "label": "Bảo mật",
+        "value": "Face ID"
+      },
+      {
+        "label": "Cổng kết nối",
+        "value": "Lightning"
+      },
+      {
+        "label": "Sạc",
+        "value": "Hỗ trợ MagSafe"
+      },
+      {
+        "label": "Kết nối",
+        "value": "5G + eSIM kép"
+      }
+    ]
+  },
+  {
+    "id": "samsung-galaxy-s24-256",
+    "slug": "galaxy-s24-256-onyx-black",
+    "brand": "Samsung",
+    "name": "Galaxy S24",
+    "heroTitle": "Flagship Android nhỏ gọn, pin đẹp, máy mới về.",
+    "shortDescription": "Galaxy S24 A+ pin 95%, màn đẹp, phù hợp cho khách muốn flagship Android giá tốt.",
+    "longDescription": "Galaxy S24 phù hợp cho người thích Android cao cấp, máy gọn và nhiều tính năng AI mới. Với pin 95%, ngoại hình đẹp và hiệu năng mạnh, đây là mẫu đáng cân nhắc nếu bạn muốn đổi gió khỏi hệ sinh thái Apple.",
+    "category": "Android flagship",
+    "storage": "256GB",
+    "color": "Đen Onyx",
+    "grade": "A+",
+    "batteryHealth": 95,
+    "launchYear": 2024,
+    "price": 17990000,
+    "originalPrice": 22990000,
+    "monthlyPrice": 1499000,
+    "rating": 4.8,
+    "reviewCount": 41,
+    "featured": false,
+    "badge": "Mới về",
+    "finish": "Khung Armor Aluminum",
+    "display": "Dynamic AMOLED 2X 6.2 inch",
+    "chipset": "Snapdragon 8 Gen 3",
+    "camera": "Camera chính 50MP + tele 3x",
+    "warranty": "Bảo hành phần cứng 12 tháng",
+    "stockLabel": "Mới về",
+    "maxTradeIn": 12900000,
+    "gradient": "linear-gradient(135deg, #585b63 0%, #262931 46%, #0c0d11 100%)",
+    "accessories": [
+      "Cáp USB-C",
+      "Phiếu QC",
+      "Phiếu test màn hình",
+      "Hướng dẫn cài đặt"
+    ],
+    "summaryBullets": [
+      "Pin 95%",
+      "Màn AMOLED đẹp",
+      "Flagship Android"
+    ],
+    "highlightBullets": [
+      "Phù hợp cho khách thích máy nhỏ gọn nhưng vẫn cần cấu hình mạnh.",
+      "Camera, màn hình và AI đều đủ sức cạnh tranh trong phân khúc cao cấp.",
+      "Máy mới về, ngoại hình đẹp nên rất hợp lên khu nổi bật."
+    ],
+    "specs": [
+      {
+        "label": "Pin",
+        "value": "Sức khỏe 95%"
+      },
+      {
+        "label": "Màn hình",
+        "value": "LTPO AMOLED 1-120Hz"
+      },
+      {
+        "label": "Chip",
+        "value": "Snapdragon 8 Gen 3"
+      },
+      {
+        "label": "Camera",
+        "value": "50MP + zoom Space Zoom 30x"
+      },
+      {
+        "label": "Bảo mật",
+        "value": "Vân tay siêu âm"
+      },
+      {
+        "label": "Sạc",
+        "value": "USB-C + sạc không dây"
+      }
+    ]
+  },
+  {
+    "id": "google-pixel-8-pro-128",
+    "slug": "pixel-8-pro-128-bay-blue",
+    "brand": "Google",
+    "name": "Pixel 8 Pro",
+    "heroTitle": "Camera đẹp, ảnh xử lý tốt, phong cách rất khác biệt.",
+    "shortDescription": "Pixel 8 Pro A pin 93%, camera mạnh, hợp cho khách ưu tiên chụp ảnh và Android thuần.",
+    "longDescription": "Pixel 8 Pro dành cho người cần camera tốt, ảnh xử lý đẹp và trải nghiệm Android gọn nhẹ. Đây là mẫu máy khác biệt trong danh mục, phù hợp cho khách thích chụp ảnh, làm nội dung hoặc muốn một flagship không quá đại trà.",
+    "category": "Android flagship",
+    "storage": "128GB",
+    "color": "Bay Blue",
+    "grade": "A",
+    "batteryHealth": 93,
+    "launchYear": 2023,
+    "price": 16990000,
+    "originalPrice": 26990000,
+    "monthlyPrice": 1416000,
+    "rating": 4.7,
+    "reviewCount": 29,
+    "featured": false,
+    "badge": "Camera đẹp",
+    "finish": "Thanh camera nhôm đánh bóng",
+    "display": "LTPO OLED 6.7 inch",
+    "chipset": "Google Tensor G3",
+    "camera": "Camera chính 50MP + tele 5x",
+    "warranty": "Bảo hành phần cứng 12 tháng",
+    "stockLabel": "Sẵn hàng",
+    "maxTradeIn": 11800000,
+    "gradient": "linear-gradient(135deg, #d9eef2 0%, #6ca6c7 46%, #1f5068 100%)",
+    "accessories": [
+      "Cáp USB-C",
+      "Phiếu QC",
+      "Phiếu căn chỉnh camera",
+      "Hướng dẫn cài đặt"
+    ],
+    "summaryBullets": [
+      "Pin 93%",
+      "Ảnh xử lý tốt",
+      "Android thuần"
+    ],
+    "highlightBullets": [
+      "Rất hợp với khách ưu tiên chụp ảnh, quay video và chỉnh ảnh nhanh.",
+      "Android thuần, máy chạy nhẹ và giao diện sạch.",
+      "Mức giá máy cũ giúp tiếp cận dòng Pixel dễ hơn nhiều so với mua mới."
+    ],
+    "specs": [
+      {
+        "label": "Pin",
+        "value": "Sức khỏe 93%"
+      },
+      {
+        "label": "Màn hình",
+        "value": "LTPO OLED 1-120Hz"
+      },
+      {
+        "label": "Chip",
+        "value": "Tensor G3"
+      },
+      {
+        "label": "Camera",
+        "value": "Tele quang học 5x"
+      },
+      {
+        "label": "Bảo mật",
+        "value": "Mở khóa khuôn mặt + vân tay"
+      },
+      {
+        "label": "Sạc",
+        "value": "USB-C + sạc không dây"
+      }
+    ]
+  }
+]

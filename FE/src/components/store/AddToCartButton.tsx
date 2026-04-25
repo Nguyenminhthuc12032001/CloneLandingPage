@@ -31,7 +31,7 @@ export function AddToCartButton({ slug, wide = false }: AddToCartButtonProps) {
         setAdded(true)
       }}
     >
-      {added ? 'Added to cart' : 'Add to cart'}
+      {added ? 'Đã thêm vào giỏ' : 'Chọn mua'}
     </button>
   )
 }

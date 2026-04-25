@@ -12,13 +12,15 @@ import { formatCurrency } from '@/lib/format'
 
 type Params = { slug: string } | Promise<{ slug: string }>
 
+export const dynamic = 'force-dynamic'
+
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const resolvedParams = await params
-  const product = getProductBySlug(resolvedParams.slug)
+  const product = await getProductBySlug(resolvedParams.slug)
 
   if (!product) {
     return {
-      title: 'Device not found | Renewed Mobile Store',
+      title: 'Không tìm thấy sản phẩm | Renewed Mobile Store',
     }
   }
 
@@ -30,18 +32,18 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 export default async function ProductDetailPage({ params }: { params: Params }) {
   const resolvedParams = await params
-  const product = getProductBySlug(resolvedParams.slug)
+  const product = await getProductBySlug(resolvedParams.slug)
 
   if (!product) {
     notFound()
   }
 
-  const relatedProducts = getRelatedProducts(product.slug)
+  const relatedProducts = await getRelatedProducts(product.slug)
 
   return (
     <section className="shell page-shell">
       <div className="breadcrumb-row">
-        <Link href="/products">Catalog</Link>
+        <Link href="/products">Điện thoại</Link>
         <span>/</span>
         <span>{product.name}</span>
       </div>
@@ -58,21 +60,21 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
 
           <div className="detail-price">
             <strong>{formatCurrency(product.price)}</strong>
-            <span>Launch price {formatCurrency(product.originalPrice)}</span>
-            <small>From {formatCurrency(product.monthlyPrice)} / month in financing-ready UI copy.</small>
+            <span>Giá mới tham khảo {formatCurrency(product.originalPrice)}</span>
+            <small>Trả góp từ {formatCurrency(product.monthlyPrice)} / tháng.</small>
           </div>
 
           <div className="detail-stats">
             <div>
-              <span>Grade</span>
+              <span>Tình trạng máy</span>
               <strong>{product.grade}</strong>
             </div>
             <div>
-              <span>Battery</span>
+              <span>Pin</span>
               <strong>{product.batteryHealth}%</strong>
             </div>
             <div>
-              <span>Warranty</span>
+              <span>Bảo hành</span>
               <strong>{product.warranty}</strong>
             </div>
           </div>
@@ -86,8 +88,8 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
 
       <div className="detail-grid">
         <article className="panel detail-panel">
-          <span className="section-heading__eyebrow">Highlights</span>
-          <h2>Why this device works in a premium refurbished catalog.</h2>
+          <span className="section-heading__eyebrow">Điểm nổi bật</span>
+          <h2>Lý do nhiều khách sẽ cân mẫu máy này.</h2>
           <ul className="bullet-list">
             {product.highlightBullets.map((bullet) => (
               <li key={bullet}>{bullet}</li>
@@ -96,8 +98,8 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
         </article>
 
         <article className="panel detail-panel">
-          <span className="section-heading__eyebrow">What is in the box</span>
-          <h2>Accessories and trust signals.</h2>
+          <span className="section-heading__eyebrow">Trong hộp có gì</span>
+          <h2>Phụ kiện và giấy tờ đi kèm khi nhận máy.</h2>
           <ul className="bullet-list">
             {product.accessories.map((item) => (
               <li key={item}>{item}</li>
@@ -108,9 +110,9 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
 
       <section className="panel specs-panel">
         <div className="section-heading">
-          <span className="section-heading__eyebrow">Specs</span>
-          <h2>Technical story told in a cleaner, high-confidence way.</h2>
-          <p>These are the details customers care about when they are comparing premium used devices.</p>
+          <span className="section-heading__eyebrow">Thông số</span>
+          <h2>Thông số đáng quan tâm khi so máy cũ.</h2>
+          <p>Đây là những chi tiết người mua thường xem đầu tiên trước khi quyết định chốt máy.</p>
         </div>
 
         <div className="spec-grid">
@@ -125,9 +127,9 @@ export default async function ProductDetailPage({ params }: { params: Params }) 
 
       <section className="section-space section-space--last">
         <SectionHeading
-          eyebrow="Related picks"
-          title="Cross-sell products that keep the same premium story."
-          description="Related devices help the catalog feel curated rather than infinite."
+          eyebrow="Mẫu cùng tầm giá"
+          title="Những máy đáng cân thêm trước khi chốt."
+          description="Các lựa chọn liên quan giúp bạn so nhanh pin, đời máy và mức giá trong cùng phân khúc."
         />
         <div className="product-grid">
           {relatedProducts.map((related) => (

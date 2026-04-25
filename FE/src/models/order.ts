@@ -23,8 +23,12 @@ export interface CartTotals {
   total: number
 }
 
+export type OrderStatus = 'Đã nhận đơn' | 'Đang xác nhận' | 'Đang giao' | 'Đã giao' | 'Sẵn sàng cài đặt'
+
 export interface CheckoutResult {
   orderNumber: string
+  status: OrderStatus
+  createdAt: string
   eta: string
   totals: CartTotals
   customer: CheckoutCustomer
@@ -36,9 +40,13 @@ export interface CheckoutResult {
   }>
 }
 
+export interface StoredOrder extends CheckoutResult {
+  updatedAt: string
+}
+
 export interface AccountOrder {
   orderNumber: string
-  status: 'Delivered' | 'Shipping' | 'Ready for setup'
+  status: OrderStatus
   createdAt: string
   total: number
   items: Array<{
